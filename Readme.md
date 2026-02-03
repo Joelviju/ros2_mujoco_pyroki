@@ -1,7 +1,7 @@
 # ROS 2 MuJoCo Workspace
 
 ## Overview
-
+## This repository is still under working phase in organizing things otherwise the codes included in it for mujoco-ros2-moveit and moveit/movegroup_interface cpp API code will work perfectly
 This repository contains a ROS 2 Humble workspace designed to support robot description development simulation using MuJoCo and future integration with motion planning frameworks.
 
 The workspace is intended to be used inside a Docker based development container on Windows using WSL2 and VS Code Dev Containers.

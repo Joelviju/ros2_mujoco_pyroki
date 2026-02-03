@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Make prefix-like symbols always exist -->
+  <xacro:property name="pi" value="3.141592653589793"/>
+
+  <xacro:macro name="franka_hand"
+    params="
+      connected_to:=''
+      arm_id:='panda'
+      ee_id:='franka_hand'
+      ee_inertials:=''
+      rpy:='0 0 0'
+      xyz:='0 0 0'
+      tcp_xyz:='0 0 0.1034'
+      tcp_rpy:='0 0 0'
+      safety_distance:=0
+      gazebo:=false
+      description_pkg:='franka_description'">
+
+    <!-- Base hand link -->
+    <link name="${arm_id}_hand">
+      <visual>
+        <geometry>
+          <box size="0.08 0.08 0.04"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Attach to robot -->
+    <xacro:if value="${connected_to != ''}">
+      <joint name="${arm_id}_hand_joint" type="fixed">
+        <parent link="${connected_to}"/>
+        <child link="${arm_id}_hand"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </joint>
+    </xacro:if>
+
+    <!-- TCP -->
+    <link name="${arm_id}_hand_tcp"/>
+    <joint name="${arm_id}_hand_tcp_joint" type="fixed">
+      <origin xyz="${tcp_xyz}" rpy="${tcp_rpy}"/>
+      <parent link="${arm_id}_hand"/>
+      <child link="${arm_id}_hand_tcp"/>
+    </joint>
+
+    <!-- Left finger -->
+    <link name="${arm_id}_leftfinger">
+      <visual>
+        <geometry>
+          <mesh filename="package://${description_pkg}/meshes/visual/finger.dae"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Right finger -->
+    <link name="${arm_id}_rightfinger">
+      <visual>
+        <origin rpy="0 0 ${pi}"/>
+        <geometry>
+          <mesh filename="package://${description_pkg}/meshes/visual/finger.dae"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Finger joints -->
+    <joint name="${arm_id}_finger_joint1" type="prismatic">
+      <parent link="${arm_id}_hand"/>
+      <child link="${arm_id}_leftfinger"/>
+      <origin xyz="0 0 0.0584"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="100" lower="0.0" upper="0.04" velocity="0.2"/>
+    </joint>
+
+    <joint name="${arm_id}_finger_joint2" type="prismatic">
+      <parent link="${arm_id}_hand"/>
+      <child link="${arm_id}_rightfinger"/>
+      <origin xyz="0 0 0.0584"/>
+      <axis xyz="0 -1 0"/>
+      <limit effort="100" lower="0.0" upper="0.04" velocity="0.2"/>
+      <mimic joint="${arm_id}_finger_joint1"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

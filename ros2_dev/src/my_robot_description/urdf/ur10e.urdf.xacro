@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur10e">
+
+  <!-- Arguments -->
+  <xacro:arg name="prefix" default=""/>
+
+  <!-- Include your macro file -->
+  <xacro:include filename="ur10e_macro.xacro"/>
+
+  <!-- INSTANTIATE the robot -->
+  <xacro:ur10e prefix="${prefix}"/>
+
+</robot>

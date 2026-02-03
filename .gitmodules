@@ -4,3 +4,7 @@
 [submodule "src/franka_description"]
 	path = src/franka_description
 	url = https://github.com/frankarobotics/franka_description.git
+[submodule "src/moveit_resources"]
+	path = src/moveit_resources
+	url = https://github.com/moveit/moveit_resources.git
+	branch = ros2

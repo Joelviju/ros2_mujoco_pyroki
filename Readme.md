@@ -4,7 +4,7 @@
 ## This repository is still under working phase in organizing things otherwise the codes included in it for mujoco-ros2-moveit and moveit/movegroup_interface cpp API code will work perfectly
 This repository contains a ROS 2 Humble workspace designed to support robot description development simulation using MuJoCo and future integration with motion planning frameworks.
 ## For now this is the output the robot going inside the world base in mujoco is just a minor fix away in the scene.xml
-## For the actual codes in the repository refer to codes refer to src/mujoco_cpp_pkg/src/ur10e_moveit_robot1.cpp for a simple moveit api code and the important code src/mujoco_cpp_pkg/src/mujoco_follow_joint_trajectory.cpp 
+### For the actual codes in the repository refer to codes refer to src/mujoco_cpp_pkg/src/ur10e_moveit_robot1.cpp for a simple moveit api code and the important code src/mujoco_cpp_pkg/src/mujoco_follow_joint_trajectory.cpp 
 
 ![2026-02-0923-12-232online-video-cutter com-ezgif com-crop](https://github.com/user-attachments/assets/d8a2a8d9-596b-4c4b-b847-73c857955940)
 
